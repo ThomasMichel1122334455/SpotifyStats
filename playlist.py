@@ -2,7 +2,7 @@ from song_collection import SongCollection
 from song import Song
 
 class Playlist(SongCollection):
-    
+    """Represents a Playlist"""
     def __init__(self, api_dict):
         """
         Playlist Constructor

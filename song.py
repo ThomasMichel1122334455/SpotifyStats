@@ -1,6 +1,7 @@
 from spotify_item import SpotifyItem
 
 class Song(SpotifyItem):
+    """Represents a Song"""
     def __init__(self, api_dict):
         """
         Song Constructor

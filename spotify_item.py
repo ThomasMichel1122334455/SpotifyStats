@@ -1,17 +1,17 @@
 from abc import ABC, abstractmethod
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
-import api_credentials
+from spotipy.oauth2 import SpotifyClientCredentials
 
 class SpotifyItem(ABC):
+    """Represents a Song or Song Collection (Album, or Playlist)"""
     def __init__(self, api_dict):
         """
         SpotifyItem Constructor
-        Represents a Song or Song Collection (Album, or Playlist)
         :param api_dict: A Dictionary from the API that holds all of the details about a Spotify Item
         """
         self.api_dict = api_dict
-        self.spot_api = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=api_credentials.client_ID, client_secret= api_credentials.client_SECRET, redirect_uri=api_credentials.redirect_URI))
+        client_credentials_manager = SpotifyClientCredentials(client_id='4ac5a4f3e31640ec8025137207814eed', client_secret='c5392ce82e0341ad95dc3b2450ec1549')
+        self.spot_api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
         self.id = None
         self.name = None
         self.creators = []

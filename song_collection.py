@@ -1,11 +1,12 @@
 from spotify_item import SpotifyItem
 
 class SongCollection(SpotifyItem):
+    """Represents an Album or Playlist"""
 
     def __init__(self, api_dict):
         """
         SongCollection Constructor
-        Can be a Album or Playlist
+        
         :param api_dict: A Dictionary from the API that holds all of the details about a Spotify Item
         """
         super().__init__(api_dict)
