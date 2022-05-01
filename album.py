@@ -1,20 +1,21 @@
 from song_collection import SongCollection
 from song import Song
 
+
 class Album(SongCollection):
     """Represents an Album"""
+
     def __init__(self, api_dict):
         """
         Album Constructor
-        :param api_dict: A Dictionary from the API that holds all of the details about a Spotify Item
+        :param api_dict: A Dictionary from the API that holds all the details about an Album
         """
         super().__init__(api_dict)
-    
 
     def get_info(self):
         # Assigns the Dictionary representing a Album from the Spotify API to a variable
         albm = self.api_dict
-        # Gets all the necesary values from the Dictionary and stores them in their variables
+        # Gets all the necessary values from the Dictionary and stores them in their variables
         self.id = albm['id']
         self.name = albm['name']
         self.num_songs = albm['total_tracks']
@@ -22,11 +23,9 @@ class Album(SongCollection):
         for creator in albm['artists']:
             self.creators.append(creator['name'])
 
-
     def get_audio_features(self):
         self.get_tracks()
         return super().get_audio_features()
-        
 
     def get_tracks(self):
         """
@@ -54,4 +53,5 @@ class Album(SongCollection):
         self.popularity /= self.num_songs
 
     def __str__(self):
-        return f'Name: {self.name}\nCreator: {self.creators}\nSongs: {self.num_songs}\nDuration: {self.duration}\nPopularity: {self.popularity}'
+        return (f'Name: {self.name}\nCreator: {self.creators}\
+        \nSongs: {self.num_songs}\nDuration: {self.duration}\nPopularity: {self.popularity}')

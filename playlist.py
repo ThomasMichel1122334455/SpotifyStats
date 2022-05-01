@@ -1,31 +1,30 @@
 from song_collection import SongCollection
 from song import Song
 
+
 class Playlist(SongCollection):
     """Represents a Playlist"""
+
     def __init__(self, api_dict):
         """
         Playlist Constructor
-        :param api_dict: A Dictionary from the API that holds all of the details about a Spotify Item
+        :param api_dict: A Dictionary from the API that holds all the details about a Playlist
         """
         super().__init__(api_dict)
-
 
     def get_info(self):
         # Assigns the Dictionary representing a Playlist from the Spotify API to a variable
         plist = self.api_dict
-        # Gets all the necesary values from the Dictionary and stores them in their variables
+        # Gets all the necessary values from the Dictionary and stores them in their variables
         self.id = plist['id']
         self.name = plist['name']
         self.creators.append(plist['owner']['display_name'])
         self.num_songs = plist['tracks']['total']
         self.cover_image = plist['images'][0]['url']
-        
-    
+
     def get_audio_features(self):
         self.get_tracks()
         return super().get_audio_features()
-
 
     def get_tracks(self):
         """
@@ -49,12 +48,12 @@ class Playlist(SongCollection):
                     self.songs.append(song)
                     self.popularity += song.popularity
                     self.duration += song.duration
-                    
+
             # Increases the starting index to grab the next 100 Songs
             offset += buffer
             remaining -= buffer
         self.popularity /= self.num_songs
-        
-        
+
     def __str__(self):
-        return f'Name: {self.name}\nCreator: {self.creators}\nSongs: {self.num_songs}\nDuration: {self.duration}\nPopularity: {self.popularity}'
+        return (f'Name: {self.name}\nCreator: {self.creators}\
+        \nSongs: {self.num_songs}\nDuration: {self.duration}\nPopularity: {self.popularity}')
