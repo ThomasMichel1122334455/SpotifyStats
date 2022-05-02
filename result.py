@@ -21,6 +21,9 @@ class Result(tk.Canvas):
         # Adds the SpotifyItem's Image to the List of Images so it can properly load in the window
         frame.master.result_imgs[index] = frame.master.get_cover_img(result.cover_image, 60)
         creator_names = ', '.join(result.creators)
+        # Using tkinter and linux does not allow for emojis to be in the name
+        name = [char for char in result.name if ord(char) <= 65535]
+        result.name = ''.join(name)
         # Adds the SpotifyItem's name to the Result Canvas
         self.create_text((80, (height / 2) - 10), text=result.name, anchor=tk.W, font='Gothic_A1 12 bold',
                          fill=frame.master.text_color_1)
